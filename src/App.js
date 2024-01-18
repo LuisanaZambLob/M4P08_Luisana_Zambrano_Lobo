@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Keyboard from './Keyboard';
+import Result from './Result';
+import './App.css'; 
 
-function App() {
+const App = () => {
+  const [result, setResult] = useState('');
+
+  const handleButtonClick = (buttonText) => {
+    if (buttonText === 'Borrar') {
+      setResult(result.slice(0, -1));
+    } else {
+      setResult(result + buttonText);
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app-container'>
+          <div className='result-container'>        
+        <Result value={result}/>
+        Resultado
+      <div className='square-container'>
+        {}
+        <Keyboard onButtonClick={handleButtonClick} />
+        </div>
+        </div>
     </div>
   );
 }
